@@ -6,7 +6,8 @@ window.addEventListener('DOMContentLoaded', () => {
       closeElem = document.querySelector('.menu__close'),
       overlay = document.querySelector('.menu__overlay'),
       anchors = document.querySelectorAll('a[href*="#"]'),
-      form = document.querySelector('.contacts__form')
+      form = document.querySelector('.contacts__form'),
+      overlayContacts = document.querySelector('.contacts__overlay')
 
     hamburger.addEventListener('click', () => {
         menu.classList.add('active');
@@ -39,15 +40,6 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    const percents = document.querySelectorAll('.progress__item-percent'),
-        lines = document.querySelectorAll('.progress__item-line span');
-
-
-    percents.forEach( (item, i) => {
-        lines[i].style.width = item.innerHTML;
-    });
-
-
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -58,7 +50,8 @@ window.addEventListener('DOMContentLoaded', () => {
             body: formData,
         })
         .then (() => {
-            alert('Запрос отправлен');
+            overlayContacts.classList.add('active');
+            setTimeout(() => overlayContacts.classList.remove('active'), 2000)
         })
         .catch(() => {
             alert('Произошел сбой при отправке данных');
@@ -67,5 +60,5 @@ window.addEventListener('DOMContentLoaded', () => {
             form.reset();
         })
     });
-    
+
 });
